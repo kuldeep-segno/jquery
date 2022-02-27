@@ -253,6 +253,17 @@ $(document).ready(function () {
         });
         
         // console.log(s)
+        $("section div").hover(function(){
+            var data=$('main').html()
+            console.log('kkkkkkkkkkkkkkkkkkkkkkkk')
+            var heads=$('div .heading-s').html()
+            var headf=$('div .heading-f').html()
+            var sheadf=$('div .sheading-s').html()
+            localStorage.setItem('heads',heads);
+            localStorage.setItem('headf',headf);
+            localStorage.setItem('sheadf',sheadf);
+            localStorage.setItem('mainn',data);
+          });
         $('main').change(function () {
         var data=$('main').html()
         var heads=$('div .heading-s').html()
@@ -276,6 +287,14 @@ $(document).ready(function () {
             stop: function( event, ui ) {
                 if(titleDrop != titleChange)
                     dropped.append(ui.item);
+                var data=$('main').html()
+                var heads=$('div .heading-s').html()
+                var headf=$('div .heading-f').html()
+                // var sheadf=$('div .sheading-s').html()
+                localStorage.setItem('heads',heads);
+                localStorage.setItem('headf',headf);
+                // localStorage.setItem('sheadf',sheadf);
+                localStorage.setItem('mainn',data);
             },
             change: function(event, ui){
                 titleChange = ui.placeholder.parent().find('h4').text();
