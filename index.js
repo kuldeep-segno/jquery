@@ -4,7 +4,7 @@ $(document).ready(function () {
         // var e = e+1
         var head = $('.htext', this).val();
         // console.log(head, 'hhhhhhhhhhhhhhhhhhhhhhhhh')
-        $('main').append("<section class='item'><h4>" + head + "</h4><button class='ml-4 btn-delete-s' value='delete'>delete-heading</button></section>")
+        $('main').append("<section class='item'><h4>" + head + "</h4><button class='btn btn-danger btn-delete-s' value='delete'>remove head</button></section>")
         $('.heading-s').append("<option value='' selected disabled>--select one--</option>")
         $('.heading-s option').remove()
         $('.heading-s').append("<option value='' selected disabled>--select one--</option>")
@@ -40,6 +40,22 @@ $(document).ready(function () {
                 titleDrop = $(this).find('h4').text();
             }
         });
+        $("div.sort").sortable({
+            items: ".sort-s",
+            stop: function( event, ui ) {
+                if(titleDrop != titleChange)
+                    dropped.append(ui.item)},
+                    change: function(event, ui){
+                        titleChange = ui.placeholder.parent().find('p').text();
+                    }
+                });
+                $('.sort').droppable({
+                    accept: ".sort-s",
+                    drop: function( event, ui ) {
+                        dropped = $(this);
+                        titleDrop = $(this).find('p').text();
+                    }
+                });
         // $("section").sortable();
     })
     $('.subheadingform').on('submit', function (e) {
@@ -54,7 +70,7 @@ $(document).ready(function () {
             var heading = $(this).text()
             $('#hselect').append("<option value=" + key + ">" + heading + "</option>")
         })
-        $('main section:nth-child(' + h + ')').append("<div class='sort'><p>" + shead + "</p><button class='ml-4 btn-delete' value='delete'>delete subheading</button></div>")
+        $('main section:nth-child(' + h + ')').append("<div class='sort'><p>" + shead + "</p><button class='btn btn-danger btn-delete' value='delete'>remove sub-head</button></div>")
         // $('.sheading-s').append("<option>" + shead + "</option>")
         $(".subheadingform")[0].reset();
         var data=$('main').html()
@@ -82,6 +98,22 @@ $(document).ready(function () {
                 titleDrop = $(this).find('h4').text();
             }
         });
+        $("div.sort").sortable({
+            items: ".sort-s",
+            stop: function( event, ui ) {
+                if(titleDrop != titleChange)
+                    dropped.append(ui.item)},
+                    change: function(event, ui){
+                        titleChange = ui.placeholder.parent().find('p').text();
+                    }
+                });
+                $('.sort').droppable({
+                    accept: ".sort-s",
+                    drop: function( event, ui ) {
+                        dropped = $(this);
+                        titleDrop = $(this).find('p').text();
+                    }
+                });
         // $("section").sortable();
     })
     $('.heading-f').change(function() {
@@ -149,7 +181,7 @@ $(document).ready(function () {
                 var sl="<label for='" + idd + "'>" + lbl + "</label><input type='" + i + "' class='" + cls + "'id='" + idd + "' value='" + val + "' name='" + nm + "' placeholder='" + ph + "'"+req+" "+ro+" "+dis+">";
             }
             // $('main section:nth-child(' + h + ') div p:contains('+s+')').append("<div>"+sl+"</div>")
-            $("<div>"+sl+"<button class='btn-delete' value='delete'>delete</button></div>").insertAfter('main section:nth-child(' + h + ') div p:contains('+s+')');
+            $("<div class='sort-s'>"+sl+"<button class='btn btn-danger btn-delete' value='delete'>x</button></div>").insertAfter('main section:nth-child(' + h + ') div p:contains('+s+')');
             $(".fform")[0].reset();
             var data=$('main').html()
             var heads=$('div .heading-s').html()
@@ -176,6 +208,22 @@ $(document).ready(function () {
                     titleDrop = $(this).find('h4').text();
                 }
             });
+            $("div.sort").sortable({
+                items: ".sort-s",
+                stop: function( event, ui ) {
+                    if(titleDrop != titleChange)
+                        dropped.append(ui.item)},
+                        change: function(event, ui){
+                            titleChange = ui.placeholder.parent().find('p').text();
+                        }
+                    });
+                    $('.sort').droppable({
+                        accept: ".sort-s",
+                        drop: function( event, ui ) {
+                            dropped = $(this);
+                            titleDrop = $(this).find('p').text();
+                        }
+                    });
             // $("section").sortable();
 
         })
@@ -206,6 +254,22 @@ $(document).ready(function () {
                     titleDrop = $(this).find('h4').text();
                 }
             });
+            $("div.sort").sortable({
+                items: ".sort-s",
+                stop: function( event, ui ) {
+                    if(titleDrop != titleChange)
+                        dropped.append(ui.item)},
+                        change: function(event, ui){
+                            titleChange = ui.placeholder.parent().find('p').text();
+                        }
+                    });
+                    $('.sort').droppable({
+                        accept: ".sort-s",
+                        drop: function( event, ui ) {
+                            dropped = $(this);
+                            titleDrop = $(this).find('p').text();
+                        }
+                    });
             // $('section').sortable();
         });
         $("main").on('click', '.btn-delete-s', function () {
@@ -250,6 +314,22 @@ $(document).ready(function () {
                     titleDrop = $(this).find('h4').text();
                 }
             });
+            $("div.sort").sortable({
+                items: ".sort-s",
+                stop: function( event, ui ) {
+                    if(titleDrop != titleChange)
+                        dropped.append(ui.item)},
+                        change: function(event, ui){
+                            titleChange = ui.placeholder.parent().find('p').text();
+                        }
+                    });
+            $('.sort').droppable({
+                accept: ".sort-s",
+                drop: function( event, ui ) {
+                    dropped = $(this);
+                    titleDrop = $(this).find('p').text();
+                }
+            });
         });
         
         // console.log(s)
@@ -281,6 +361,7 @@ $(document).ready(function () {
         $('main').html(mainn);
         $('div .heading-s').html(heads)
         $('div .heading-f').html(headf)
+        // $('div .sheading-s').html(sheadf)
         // $('main').sortable();
         $("main").sortable({
             items: ".sort",
@@ -307,5 +388,28 @@ $(document).ready(function () {
                 titleDrop = $(this).find('h4').text();
             }
         });
-        // $('div .sheading-s').html(sheadf)
-    })
+        $("div.sort").sortable({
+            items: ".sort-s",
+            stop: function( event, ui ) {
+                if(titleDrop != titleChange)
+                    dropped.append(ui.item)
+                    var data=$('main').html()
+                    var heads=$('div .heading-s').html()
+                    var headf=$('div .heading-f').html()
+                    // var sheadf=$('div .sheading-s').html()
+                    localStorage.setItem('heads',heads);
+                    localStorage.setItem('headf',headf);
+                    // localStorage.setItem('sheadf',sheadf);
+                    localStorage.setItem('mainn',data);},
+                    change: function(event, ui){
+                        titleChange = ui.placeholder.parent().find('p').text();
+                    }
+                });
+                $('.sort').droppable({
+                    accept: ".sort-s",
+                    drop: function( event, ui ) {
+                        dropped = $(this);
+                        titleDrop = $(this).find('p').text();
+                    }
+                });
+            });
